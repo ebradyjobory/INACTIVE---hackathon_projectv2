@@ -66,16 +66,16 @@
            </div>
            <div ng-show="loaded">
 
-              <h2> {{user.name}}
-                 <span class="smallname">(@<a href="{{user.html_url}}" target="_blank"> {{user.login}} </a>)</span>
-              </h2>
-
               <div class="ghcontent">
-                 <div class="avi">
-                    <a href="{{ user.html_url }}" target="_blank">
-                       <img class="profile-image" src="{{ user.avatar_url }}" alt="{{ user.login }}"></a>
-                 </div>
-                 Followers: {{ user.followers }} - Following: {{ user.following }}<br>Repos: {{ user.public_repos }}</p>
+                <div class="media">
+                  <a class="media-left"  href="{{ user.html_url }}" target="_blank">
+                    <img class="profile-image" src="{{ user.avatar_url }}" alt="{{ user.login }}">
+                  </a>
+                  <div class="media-body">
+                    <h4 class="media-heading">{{user.name}} <span class="smallname">(@<a href="{{user.html_url}}" target="_blank"> {{user.login}} </a>)</span></h4>
+                      Followers: {{ user.followers }} - Following: {{ user.following }}<br>Repos: {{ user.public_repos }}</p>
+                  </div>
+                </div>
               </div>
 
               <div class="repolist clearfix">
@@ -83,8 +83,8 @@
 
                  <div ng-show="reposFound">
                     <p><strong>Repos List:</strong></p>
-                    <ul ng-repeat="repo in repos" class="list-inline">
-                       <li><a href="{{repo.html_url}}" target="_blank"> {{repo.name}} </a></li>
+                    <ul class="list-inline" ng-repeat="repo in repos" >
+                       <li><a href="{{repo.html_url}}" target="_blank"><span class="label label-primary"> {{repo.name}} </span></a></li>
                     </ul>
                  </div>
               </div>
