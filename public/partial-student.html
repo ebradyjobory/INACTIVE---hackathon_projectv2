@@ -1,0 +1,47 @@
+<form role="form">
+  <div class="col-md-6">
+    <div class="input-group input-group-lg">
+      <input type="text" class="form-control" id="ghusername" placeholder="Enter a Github username" ng-model="username">
+      <span class="input-group-btn">
+        <button type="submit" id="ghsubmitbtn" class="btn btn-default search" ng-click="getGitInfo()">Search</button>
+      </span>
+      <div id="ghapidata" class="clearfix"></div>
+    </div>
+  </div>
+</form>
+
+<hr>
+
+<div class="panel panel-default">
+  <div class="panel-heading">Student Info</div>
+  <div class="panel-body">
+    <div ng-show="userNotFound">
+        <h2>No User Info Found</h2>
+     </div>
+     <div ng-show="loaded">
+
+        <div class="ghcontent">
+          <div class="media">
+            <a class="media-left"  href="{{ user.html_url }}" target="_blank">
+              <img class="profile-image" src="{{ user.avatar_url }}" alt="{{ user.login }}">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading">{{user.name}} <span class="smallname">(@<a href="{{user.html_url}}" target="_blank"> {{user.login}} </a>)</span></h4>
+                Followers: {{ user.followers }} - Following: {{ user.following }}<br>Repos: {{ user.public_repos }}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="repolist clearfix">
+           <p ng-hide="reposFound">No repos!</p>
+
+           <div ng-show="reposFound">
+              <p><strong>Repos List:</strong></p>
+              <ul class="list-group" ng-repeat="repo in repos" >
+                 <li class="list-group-item"><a href="{{repo.html_url}}" target="_blank">{{repo.name}}</a></li>
+              </ul>
+           </div>
+        </div>
+     </div>
+  </div>
+</div>

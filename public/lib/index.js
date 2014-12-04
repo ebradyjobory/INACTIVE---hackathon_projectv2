@@ -1,4 +1,17 @@
-var app = angular.module('App', []);
+var app = angular.module('App', ['ui.router']);
+
+app.config(function($stateProvider, $urlRouterProvider) {
+  $urlRouterProvider.otherwise('/');
+  $stateProvider
+    .state('home', {
+      url: '/student',
+      templateUrl: 'partial-student.html'
+    })
+    .state('mentor', {
+      url: '/mentor',
+      templateUrl: 'partial-mentor.html'
+    });
+});
 
 app.controller('GitHubCtrl', function ($scope, $http) {
   $scope.getGitInfo = function () {

@@ -12,6 +12,7 @@
     <link rel='stylesheet' href='stylesheets/style.css' />
 
     <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/jquery/dist/jquery.js"></script>
 
     <script src="lib/index.js"></script>
@@ -33,8 +34,8 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="/">Student List</a></li>
-            <li><a href="/mentor">Mentor List</a></li>
+            <li><a ui-sref="home">Student List</a></li>
+            <li><a ui-sref="mentor">Mentor List</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="/sign-up">Create Account</a></li>
@@ -45,52 +46,7 @@
     </nav>
 
     <div class="container">
-      <form role="form">
-        <div class="col-md-6">
-          <div class="input-group input-group-lg">
-            <input type="text" class="form-control" id="ghusername" placeholder="Enter a Github username" ng-model="username">
-            <span class="input-group-btn">
-              <button type="submit" id="ghsubmitbtn" class="btn btn-default search" ng-click="getGitInfo()">Search</button>
-            </span>
-            <div id="ghapidata" class="clearfix"></div>
-          </div>
-        </div>
-      </form>
-
-      <hr>
-
-      <div class="panel panel-default">
-        <div class="panel-heading">Student Info</div>
-        <div class="panel-body">
-          <div ng-show="userNotFound">
-              <h2>No User Info Found</h2>
-           </div>
-           <div ng-show="loaded">
-              <div class="ghcontent">
-                <div class="media">
-                  <a class="media-left"  href="{{ user.html_url }}" target="_blank">
-                    <img class="profile-image" src="{{ user.avatar_url }}" alt="{{ user.login }}">
-                  </a>
-                  <div class="media-body">
-                    <h4 class="media-heading">{{user.name}} <span class="smallname">(@<a href="{{user.html_url}}" target="_blank"> {{user.login}} </a>)</span></h4>
-                      Followers: {{ user.followers }} - Following: {{ user.following }}<br>Repos: {{ user.public_repos }}</p>
-                  </div>
-                </div>
-              </div>
-
-              <div class="repolist clearfix">
-                 <p ng-hide="reposFound">No repos!</p>
-
-                 <div ng-show="reposFound">
-                    <p><strong>Repos List:</strong></p>
-                    <ul class="list-inline" ng-repeat="repo in repos" >
-                       <li><a href="{{repo.html_url}}" target="_blank"><span class="label label-primary"> {{repo.name}} </span></a></li>
-                    </ul>
-                 </div>
-              </div>
-           </div>
-        </div>
-      </div>
+      <div ui-view></div>
     </div>
   </body>
 </html>

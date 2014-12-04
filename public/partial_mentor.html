@@ -1,0 +1,36 @@
+<div class="container" ng-controller="MentorCtrl">
+  <form role="form">
+    <div class="col-md-6">
+      <div class="input-group input-group-lg">
+        <input type="text" class="form-control" id="mentorName" placeholder="Enter a mentor username">
+        <span class="input-group-btn">
+          <button type="submit" class="btn btn-primary search" type="button">Search</button>
+        </span>
+      </div>
+    </div>
+  </form>
+  <div id"mentorImage"></div>
+  <div id"mentorInfo"></div>
+  <div id"currentStudents"></div>
+  <div id="mentorImage"></div>
+  <div id="mentorInfo"></div>
+  <div id="mentorMetrics"></div>
+  <div id="totalReputation" style="display: none">
+    <h3>Reputation: <span id="reputation"></span></h3> <!-- counter for now -->
+    <button class="btn btn-success" id="up">Up</button>
+    <button class="btn btn-danger" id="down">Down</button>
+  </div>
+  <div id="studentsTable" style="display: none">
+    <table class="table table-striped" style="width: 50%">
+      <thead>
+        <tr>
+          <th>Name of student</th>
+          <th>Subject</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+    <button class="btn btn-primary" id="showStudents">Show Students</button>
+  </div>
+</div>
