@@ -4,10 +4,11 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var methodOverride = require('method-override');
 
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/students');
+mongoose.connect('mongodb://localhost:27017');
 
 require('./models/Students');
 
@@ -23,11 +24,31 @@ app.set('view engine', 'ejs');
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
+
+app.get('/api/students', function(req, res){
+  Student.find(function(err, students){
+    if (err) {
+      res.send(err);
+    }
+    res.json(students);
+  });
+});
+
+app.post('/api/students', function(req, res){
+  Student.create({
+    name: req.body.name
+  }, function(err, student){
+    if (err) {
+      res.send(err);
+    }
+  });
+});
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
