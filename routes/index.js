@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
+require('./models/Students');
 var Students = mongoose.model('Student');
 
 /* GET home page. */
@@ -11,7 +12,6 @@ router.get('/', function(req, res) {
 router.get('/students', function(req, res, next) {
   Student.find(function(err, students){
     if(err){ return next(err); }
-
     res.json(students);
   });
 });
