@@ -9,7 +9,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     })
     .state('mentor', {
       url: '/mentor',
-      templateUrl: 'partial-mentor.html'
+      templateUrl: 'partial_mentor.html'
     });
 });
 
