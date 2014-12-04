@@ -1,0 +1,24 @@
+{
+  "name": "hackathon_projectv2",
+  "version": "1.0.0",
+  "description": "Linkedin for Mentor",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/essamjoubori/hackathon_projectv2.git"
+  },
+  "author": "Victor, Essam",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/essamjoubori/hackathon_projectv2/issues"
+  },
+  "homepage": "https://github.com/essamjoubori/hackathon_projectv2",
+  "dependencies": {
+    "body-parser": "^1.10.0",
+    "express": "^4.10.4"
+  }
+}
