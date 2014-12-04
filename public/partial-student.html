@@ -28,7 +28,7 @@
             <div class="media-body">
               <h4 class="media-heading">{{student.name}}
                 <span class="smallname">(@<a href="{{student.html_url}}" target="_blank"> {{student.login}} </a>)</span>
-                <span ng-click="incrementUpvotes(student)">| Upvote ^</span>
+                <span ng-click="incrementUpvotes(student)">| Thumbs up <i class="fa fa-thumbs-o-up"></i></span>
               </h4>
                 Followers: {{ student.followers }} | Following: {{ student.following }} | Repos: {{ student.public_repos }} | upvotes: {{student.upvotes}}</p>
                 <div class="repolist clearfix">

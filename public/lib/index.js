@@ -25,9 +25,17 @@ app.config(function($stateProvider, $urlRouterProvider) {
     });
 });
 
-app.controller('GitHubCtrl', function ($scope, $http) {
+app.factory('students', [
+function(){
+  var all = {
+    students: []
+  };
+  return all;
+}]);
 
-  $scope.students = [];
+app.controller('GitHubCtrl', ['$scope', '$http', 'students', function ($scope, $http, students) {
+
+  $scope.students = students.students;
 
   $scope.incrementUpvotes = function(student) {
     student.upvotes += 1;
@@ -53,7 +61,7 @@ app.controller('GitHubCtrl', function ($scope, $http) {
     });
     $scope.username = '';
   };
-});
+}]);
 
 //dummy data for now. To be exctracted from db later
   var student1 = {
@@ -83,7 +91,7 @@ app.controller('MentorCtrl', function ($scope, $http) {
           $('#studentsTable').show();
           $('#totalReputation').show();
         }
-        
+
         if (data.name === "") data.name = data.login;
         $scope.user = data;
         console.log(data);
@@ -105,7 +113,7 @@ app.controller('MentorCtrl', function ($scope, $http) {
       if (counter >= 1) {
         counter--;
         $('#reputation').html(counter);
-      }    
+      }
     }
   };
 
