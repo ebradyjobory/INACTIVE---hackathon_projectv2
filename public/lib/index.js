@@ -4,12 +4,24 @@ app.config(function($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/');
   $stateProvider
     .state('home', {
+      url: '/',
+      templateUrl: 'partial-home.html'
+    })
+    .state('student', {
       url: '/student',
       templateUrl: 'partial-student.html'
     })
     .state('mentor', {
       url: '/mentor',
       templateUrl: 'partial_mentor.html'
+    })
+    .state('signin', {
+      url: '/signin',
+      templateUrl: 'partial-signin.html'
+    })
+    .state('signup', {
+      url: '/signup',
+      templateUrl: 'partial-signup.html'
     });
 });
 
