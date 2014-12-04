@@ -1,10 +1,10 @@
 <div ng-controller="GitHubCtrl">
-  <form role="form">
+  <form role="form" ng-submit="getGitInfo()">
     <div class="col-md-6">
       <div class="input-group input-group-lg">
         <input type="text" class="form-control" id="ghusername" placeholder="Enter a Github username" ng-model="username">
         <span class="input-group-btn">
-          <button type="submit" id="ghsubmitbtn" class="btn btn-default search" ng-click="getGitInfo()">Search</button>
+          <button type="submit" id="ghsubmitbtn" class="btn btn-default search">Become a mentee</button>
         </span>
         <div id="ghapidata" class="clearfix"></div>
       </div>
@@ -14,36 +14,38 @@
   <hr>
 
   <div class="panel panel-default">
-    <div class="panel-heading">Student Info</div>
+    <div class="panel-heading">Students list</div>
     <div class="panel-body">
       <div ng-show="userNotFound">
           <h2>No User Info Found</h2>
        </div>
-       <div ng-show="loaded">
 
-          <div class="ghcontent">
+          <div class="ghcontent" ng-repeat="student in students">
             <div class="media">
-              <a class="media-left"  href="{{ user.html_url }}" target="_blank">
-                <img class="profile-image" src="{{ user.avatar_url }}" alt="{{ user.login }}">
+              <a class="media-left"  href="{{ student.html_url }}" target="_blank">
+                <img class="profile-image" src="{{ student.avatar_url }}" alt="{{ student.login }}">
               </a>
               <div class="media-body">
-                <h4 class="media-heading">{{user.name}} <span class="smallname">(@<a href="{{user.html_url}}" target="_blank"> {{user.login}} </a>)</span></h4>
-                  Followers: {{ user.followers }} - Following: {{ user.following }}<br>Repos: {{ user.public_repos }}</p>
+                <h4 class="media-heading">{{student.name}}
+                  <span class="smallname">(@<a href="{{student.html_url}}" target="_blank"> {{student.login}} </a>)</span>
+                </h4>
+                  Followers: {{ student.followers }} - Following: {{ student.following }}<br>
+                  <p>Repos: {{ student.public_repos }}</p>
+                  <div class="repolist clearfix">
+             <p ng-hide="reposFound">No repos!</p>
+
+               <div ng-show="reposFound">
+                  <p><strong>Repos List:</strong></p>
+                  <span ng-repeat="repo in repos" >
+                     <span class="label label-primary">{{repo.name}}</span>
+                  </span>
+               </div>
+          </div>
               </div>
             </div>
           </div>
 
-          <div class="repolist clearfix">
-             <p ng-hide="reposFound">No repos!</p>
 
-             <div ng-show="reposFound">
-                <p><strong>Repos List:</strong></p>
-                <ul class="list-group" ng-repeat="repo in repos" >
-                   <li class="list-group-item"><a href="{{repo.html_url}}" target="_blank">{{repo.name}}</a></li>
-                </ul>
-             </div>
-          </div>
-       </div>
     </div>
   </div>
 </div>
