@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="App">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,8 +17,8 @@
     <script src="lib/mentor.js"></script>
 
   </head>
-  <body>
-    <!-- Static navbar -->
+
+  <body ng-controller="GitHubCtrl">
     <nav class="navbar navbar-default navbar-static-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
@@ -39,7 +39,7 @@
             <li><a href="/sign-up">Create Account</a></li>
             <li><a href="/sign-in">Sign In </a></li>
           </ul>
-        </div><!--/.nav-collapse -->
+        </div>
       </div>
     </nav>
 
@@ -47,10 +47,11 @@
       <form role="form">
         <div class="col-md-6">
           <div class="input-group input-group-lg">
-            <input type="text" class="form-control" id="username" placeholder="Enter a Github username">
+            <input type="text" class="form-control" id="ghusername" placeholder="Enter a Github username" ng-model="username">
             <span class="input-group-btn">
-              <button type="submit" class="btn btn-default search" type="button">Search</button>
+              <button type="submit" id="ghsubmitbtn" class="btn btn-default search" ng-click="getGitInfo()">Search</button>
             </span>
+            <div id="ghapidata" class="clearfix"></div>
           </div>
         </div>
       </form>
@@ -60,18 +61,37 @@
       <div class="panel panel-default">
         <div class="panel-heading">Student Info</div>
         <div class="panel-body">
-          <div class="col-sm-6">
-            <div id="studentImage"></div>
-          </div>
-          <div class="col-sm-6">
-            <div id="studentInfo"></div>
-            <div id="studentMetrics"></div>
-          </div>
+          <div ng-show="userNotFound">
+              <h2>No User Info Found</h2>
+           </div>
+           <div ng-show="loaded">
 
-          <div class="clearfix"></div>
-          <ul id="studentRepos" class="list-inline"></ul>
+              <h2> {{user.name}}
+                 <span class="smallname">(@<a href="{{user.html_url}}" target="_blank"> {{user.login}} </a>)</span>
+              </h2>
+
+              <div class="ghcontent">
+                 <div class="avi">
+                    <a href="{{ user.html_url }}" target="_blank">
+                       <img class="profile-image" src="{{ user.avatar_url }}" alt="{{ user.login }}"></a>
+                 </div>
+                 Followers: {{ user.followers }} - Following: {{ user.following }}<br>Repos: {{ user.public_repos }}</p>
+              </div>
+
+              <div class="repolist clearfix">
+                 <p ng-hide="reposFound">No repos!</p>
+
+                 <div ng-show="reposFound">
+                    <p><strong>Repos List:</strong></p>
+                    <ul ng-repeat="repo in repos" class="list-inline">
+                       <li><a href="{{repo.html_url}}" target="_blank"> {{repo.name}} </a></li>
+                    </ul>
+                 </div>
+              </div>
+           </div>
         </div>
       </div>
     </div>
   </body>
 </html>
+
