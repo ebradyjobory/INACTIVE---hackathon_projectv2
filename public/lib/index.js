@@ -29,6 +29,10 @@ app.controller('GitHubCtrl', function ($scope, $http) {
 
   $scope.students = [];
 
+  $scope.incrementUpvotes = function(student) {
+    student.upvotes += 1;
+  };
+
   $scope.getGitInfo = function () {
     if(!$scope.username || $scope.username === '') { return; }
     $scope.userNotFound = false;
@@ -36,6 +40,7 @@ app.controller('GitHubCtrl', function ($scope, $http) {
     $http.get("https://api.github.com/users/" + $scope.username)
      .success(function (data) {
         if (data.name === "") data.name = data.login;
+        data.upvotes = 0;
         $scope.students.push(data);
         $scope.loaded = true;
      })
