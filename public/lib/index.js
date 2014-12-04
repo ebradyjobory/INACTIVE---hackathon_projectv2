@@ -1,7 +1,7 @@
 var app = angular.module('App', ['ui.router']);
 //Hendrixer
 app.config(function($stateProvider, $urlRouterProvider) {
-  $urlRouterProvider.otherwise('/');
+
   $stateProvider
     .state('home', {
       url: '/',
@@ -23,6 +23,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
       url: '/signup',
       templateUrl: 'partial-signup.html'
     });
+
+    $urlRouterProvider.otherwise('/');
 });
 
 app.factory('students', [
