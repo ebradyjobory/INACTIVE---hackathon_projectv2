@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-require('./models/Students');
 var Students = mongoose.model('Student');
 
 /* GET home page. */
